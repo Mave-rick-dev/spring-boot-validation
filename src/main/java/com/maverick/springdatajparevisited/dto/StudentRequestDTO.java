@@ -3,6 +3,8 @@ package com.maverick.springdatajparevisited.dto;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 @ToString
 public class StudentRequestDTO {
     @NotBlank
+    @NotNull
     private String facultyId;
     private String facultyName;
 }
