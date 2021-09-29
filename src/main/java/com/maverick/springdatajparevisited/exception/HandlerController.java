@@ -7,7 +7,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -34,10 +33,11 @@ public class HandlerController extends ResponseEntityExceptionHandler {
             errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
         }
         ErrorAttributes errorAttributes = new ErrorAttributes(
-                HttpStatus.BAD_REQUEST,
+                status,
                 ex.getLocalizedMessage(),
                 errors
         );
+        System.out.println(status);
         return handleExceptionInternal(ex ,errorAttributes, headers, errorAttributes.getStatus(), request);
     }
 
@@ -46,7 +46,7 @@ public class HandlerController extends ResponseEntityExceptionHandler {
         return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
     }*/
 
- /*   @ExceptionHandler(MethodArgumentNotValidException.class)
+    /*@ExceptionHandler({ConstraintViolationException.class})
     public Map<String, String> handleInputValidation(MethodArgumentNotValidException methodArgumentNotValidException){
         Map<String, String> errors = new HashMap<>();
           methodArgumentNotValidException.getBindingResult().getAllErrors().forEach((error)->{
