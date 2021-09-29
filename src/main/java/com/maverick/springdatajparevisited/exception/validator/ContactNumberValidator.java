@@ -1,4 +1,4 @@
-package com.maverick.springdatajparevisited.exception;
+package com.maverick.springdatajparevisited.exception.validator;
 
 import com.maverick.springdatajparevisited.exception.annots.ContactNumberConstraint;
 
@@ -17,8 +17,7 @@ public class ContactNumberValidator implements ConstraintValidator<ContactNumber
 
     @Override
     public boolean isValid(String contactField, ConstraintValidatorContext context) {
-        return contactField != null &&
-                contactField.startsWith("98450") &&
+        return contactField.startsWith("98450") &&
                 (contactField.length() == 10);
     }
 }

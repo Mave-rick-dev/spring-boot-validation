@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @Getter
 @ToString
-public class StudentResponseDTO {
+public class StudentResDTO {
     @NotBlank
     private String studentName;
     private String studentAddress;

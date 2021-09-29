@@ -1,6 +1,7 @@
 package com.maverick.springdatajparevisited.dto;
 
 import com.maverick.springdatajparevisited.exception.annots.ContactNumberConstraint;
+import com.maverick.springdatajparevisited.exception.annots.NewPasswordConstraint;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -14,7 +15,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @ToString
-public class StudentRequestDTO {
+public class StudentReqDTO {
     @NotBlank
     @NotNull
     private String facultyId;
@@ -23,5 +24,7 @@ public class StudentRequestDTO {
     @Email
     private String facultyEmail;
     @ContactNumberConstraint
+    @NotBlank
+    @NotNull
     private String facultyNumber;
 }

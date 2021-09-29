@@ -1,6 +1,6 @@
 package com.maverick.springdatajparevisited.controller;
 
-import com.maverick.springdatajparevisited.dto.StudentRequestDTO;
+import com.maverick.springdatajparevisited.dto.StudentReqDTO;
 import com.maverick.springdatajparevisited.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping(value = "/list")
-    public ResponseEntity<?> getStudentList(@Valid @RequestBody StudentRequestDTO studentRequestDTO) {
+    public ResponseEntity<?> getStudentList(@Valid @RequestBody StudentReqDTO studentRequestDTO) {
         /**
          * Spring, by default, bootstraps the argument annotated with @Valid with
          * Hibernate Validator (JSR 380 implementation)

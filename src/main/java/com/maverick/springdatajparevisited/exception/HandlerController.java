@@ -37,23 +37,10 @@ public class HandlerController extends ResponseEntityExceptionHandler {
                 ex.getLocalizedMessage(),
                 errors
         );
-        System.out.println(status);
         return handleExceptionInternal(ex ,errorAttributes, headers, errorAttributes.getStatus(), request);
     }
 
-  /*  @ExceptionHandler(ErrorAttributes.class)
-    public ResponseEntity<String> handleEmptyInput(ErrorAttributes emptyInputException){
-        return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-    }*/
 
-    /*@ExceptionHandler({ConstraintViolationException.class})
-    public Map<String, String> handleInputValidation(MethodArgumentNotValidException methodArgumentNotValidException){
-        Map<String, String> errors = new HashMap<>();
-          methodArgumentNotValidException.getBindingResult().getAllErrors().forEach((error)->{
-            String fieldName = ((FieldError)error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName,errorMessage);
-         });
-        return errors;
-    }*/
+
+
 }
