@@ -19,5 +19,23 @@ public class ContactNumberValidator implements ConstraintValidator<ContactNumber
     public boolean isValid(String contactField, ConstraintValidatorContext context) {
         return contactField.startsWith("98450") &&
                 (contactField.length() == 10);
+
+        /**
+         * Service Code
+         * return serviceCode.equals("NP-RTP-NCELL");
+         */
+
+        /*
+        Mobile No Format
+        return mobileNum.startsWith("980")
+                || mobileNum.startsWith("981")
+                || mobileNum.startsWith("982")
+                && mobileNum.length() == 10
+         */
+
+        /**
+         * Supported Amount:
+         * return amount>=10 && amount>=5000;
+         */
     }
 }

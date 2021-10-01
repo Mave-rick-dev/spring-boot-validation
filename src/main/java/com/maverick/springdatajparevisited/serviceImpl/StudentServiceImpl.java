@@ -1,6 +1,6 @@
 package com.maverick.springdatajparevisited.serviceImpl;
 
-import com.maverick.springdatajparevisited.dto.StudentReqDTO;
+import com.maverick.springdatajparevisited.dto.TopUpReqDTO;
 import com.maverick.springdatajparevisited.dto.StudentResDTO;
 import com.maverick.springdatajparevisited.service.StudentService;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     @Override
-    public List<StudentResDTO> getStudentList(StudentReqDTO studentRequestDTO) {
+    public List<StudentResDTO> getStudentList(TopUpReqDTO studentRequestDTO) {
         List<StudentResDTO> studentResponseDTOList = List.of(
                 new StudentResDTO(
                         "Om Narayan Singh",
