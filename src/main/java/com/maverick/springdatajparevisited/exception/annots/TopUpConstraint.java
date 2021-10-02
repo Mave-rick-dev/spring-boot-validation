@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = TopUpValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TopUpConstraint {
-    String message() default "Top up failure!!";
+    String message() default "Invalid Topup Credentials!!";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
