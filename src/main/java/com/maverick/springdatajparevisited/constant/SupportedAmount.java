@@ -30,6 +30,6 @@ public class SupportedAmount {
     public static final List<Double> SMARTCELL = List.of(
             100.0,150.0,200.0,300.0,500.0,1000.0,1500.0,2000.0,3000.0,4000.0,5000.0
     );
-    public static final DoublePredicate NT_FIBER= (amount) -> amount >= 50.0 && amount <= 20000.0;;
-    public static final DoublePredicate NT_WIMAX = (amount) -> amount >= 50.0 && amount <= 20000.0;;;
+    public static final DoublePredicate NT_FIBER= (amount) -> amount >= 50.0 && amount <= 20000.0;
+    public static final DoublePredicate NT_WIMAX = (amount) -> amount >= 50.0 && amount <= 20000.0;
 }

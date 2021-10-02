@@ -1,6 +1,5 @@
 package com.maverick.springdatajparevisited.exception.annots;
 
-import com.maverick.springdatajparevisited.exception.validator.NewPasswordValidator;
 import com.maverick.springdatajparevisited.exception.validator.TopUpValidator;
 
 import javax.validation.Constraint;

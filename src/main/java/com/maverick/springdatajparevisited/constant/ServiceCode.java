@@ -14,6 +14,6 @@ public class ServiceCode {
    public static final String NT_ADSL_UNLIMITED="NP-RTP-NTADSL-UL";
    public static final String NT_ADSL_VOLUME="NP-RTP-NTADSL-VB";
    public static final String SMARTCELL="NP-RTP-SMARTCELL";
-   public static final String NT_FIBER="NP-RTP-NIFTTH";
+   public static final String NT_FIBER="NP-RTP-NTFTTH";
    public static final String NT_WIMAX="NP-RTP-NTWIMAX";
 }

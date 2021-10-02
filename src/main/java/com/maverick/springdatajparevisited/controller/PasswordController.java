@@ -3,6 +3,7 @@ package com.maverick.springdatajparevisited.controller;
 import com.maverick.springdatajparevisited.dto.PasswordReqDTO;
 import com.maverick.springdatajparevisited.service.PasswordChangeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class PasswordController {
     private final PasswordChangeService passwordChangeService;
 
     @PostMapping(value = "/change")
-    public ResponseEntity<?> changePassword(@Valid @RequestBody PasswordReqDTO passwordRequestDTO){
+     public ResponseEntity<?> changePassword(@Valid @RequestBody PasswordReqDTO passwordRequestDTO){
         return ResponseEntity.ok(passwordChangeService.changePassword(passwordRequestDTO));
     }
 }
