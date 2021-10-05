@@ -7,9 +7,12 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +42,35 @@ public class HandlerController extends ResponseEntityExceptionHandler {
         );
         return handleExceptionInternal(ex ,errorAttributes, headers, errorAttributes.getStatus(), request);
     }
+/*
+    @ExceptionHandler({ValidationException.class})
+    public final ResponseEntity<Object> handleValidationExceptions(
+            ValidationException ex) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        List<String> errors = new ArrayList<>();
 
+        errors.add(ex.getMessage());
+          ErrorAttributes errorAttributes = new ErrorAttributes(
+                status,
+                ex.getLocalizedMessage(),
+                errors
+        );
 
+        return new ResponseEntity(errorAttributes, HttpStatus.BAD_REQUEST);
+    }*/
 
+    @ExceptionHandler({RuntimeException.class})
+    public ResponseEntity<Object> handleServiceCodeNotFound(
+            final ServiceCodeNotFoundException ex){
+        final List<String> errors = new ArrayList<>();
+        errors.add(ex.getMessage());
+        final HttpStatus status = HttpStatus.BAD_REQUEST;
+        final ErrorAttributes errorAttributes = new ErrorAttributes(
+                status,
+                ex.getMessage(),
+                errors
+        );
+         return new ResponseEntity<Object>(errorAttributes, new HttpHeaders(), status);
+    }
 
 }

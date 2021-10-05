@@ -4,6 +4,7 @@ import com.maverick.springdatajparevisited.constant.MobileNoFormat;
 import com.maverick.springdatajparevisited.constant.ServiceCode;
 import com.maverick.springdatajparevisited.constant.SupportedAmount;
 import com.maverick.springdatajparevisited.dto.TopUpReqDTO;
+import com.maverick.springdatajparevisited.exception.ServiceCodeNotFoundException;
 import com.maverick.springdatajparevisited.exception.annots.TopUpConstraint;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import javax.validation.ValidationException;
 import java.util.List;
 import java.util.function.DoublePredicate;
 
@@ -20,6 +22,7 @@ import java.util.function.DoublePredicate;
  * @Author mave on 9/30/21
  */
 public class TopUpValidator implements ConstraintValidator<TopUpConstraint, TopUpReqDTO> {
+    boolean isValidated ;
 
     @Override
     public void initialize(TopUpConstraint constraintAnnotation) {
@@ -28,7 +31,6 @@ public class TopUpValidator implements ConstraintValidator<TopUpConstraint, TopU
 
     @Override
     public boolean isValid(TopUpReqDTO topUpReqDTO, ConstraintValidatorContext context) {
-        boolean isValidated = false;
 
         if(topUpReqDTO.getServicecode() == null
             || topUpReqDTO.getMobileno() == null
@@ -114,8 +116,8 @@ public class TopUpValidator implements ConstraintValidator<TopUpConstraint, TopU
                     }
                     break;
                 default:
-                    //return new ServiceCodeNotFoundError
-                    isValidated = false;
+                    throw new ServiceCodeNotFoundException("Enter a valid Service Code!!");
+                   // throw new ValidationException("Service code not found!!");
 
             }
         }
