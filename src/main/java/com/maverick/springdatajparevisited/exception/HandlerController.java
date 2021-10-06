@@ -1,5 +1,7 @@
 package com.maverick.springdatajparevisited.exception;
 
+import com.maverick.springdatajparevisited.exception.validator.InvalidMobileNumberFormatException;
+import com.maverick.springdatajparevisited.exception.validator.UnsupportedAmountExcepiton;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +29,11 @@ public class HandlerController extends ResponseEntityExceptionHandler {
             WebRequest request) {
 
         List<String> errors = new ArrayList<String>();
-        for(FieldError error:  ex.getBindingResult().getFieldErrors()){
+        for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.add(error.getField() + ": " + error.getDefaultMessage());
         }
 
-        for(ObjectError error: ex.getBindingResult().getGlobalErrors()){
+        for (ObjectError error : ex.getBindingResult().getGlobalErrors()) {
             System.out.println(ex.getBindingResult().getGlobalErrors());
             errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
         }
@@ -40,37 +42,36 @@ public class HandlerController extends ResponseEntityExceptionHandler {
                 ex.getLocalizedMessage(),
                 errors
         );
-        return handleExceptionInternal(ex ,errorAttributes, headers, errorAttributes.getStatus(), request);
+        return handleExceptionInternal(ex, errorAttributes, headers, errorAttributes.getStatus(), request);
     }
-/*
+
     @ExceptionHandler({ValidationException.class})
     public final ResponseEntity<Object> handleValidationExceptions(
             ValidationException ex) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         List<String> errors = new ArrayList<>();
+        //ex.getCause();
 
-        errors.add(ex.getMessage());
-          ErrorAttributes errorAttributes = new ErrorAttributes(
-                status,
-                ex.getLocalizedMessage(),
-                errors
-        );
-
-        return new ResponseEntity(errorAttributes, HttpStatus.BAD_REQUEST);
-    }*/
-
-    @ExceptionHandler({RuntimeException.class})
-    public ResponseEntity<Object> handleServiceCodeNotFound(
-            final ServiceCodeNotFoundException ex){
-        final List<String> errors = new ArrayList<>();
-        errors.add(ex.getMessage());
-        final HttpStatus status = HttpStatus.BAD_REQUEST;
-        final ErrorAttributes errorAttributes = new ErrorAttributes(
+        ErrorAttributes errorAttributes = new ErrorAttributes(
                 status,
                 ex.getMessage(),
                 errors
         );
-         return new ResponseEntity<Object>(errorAttributes, new HttpHeaders(), status);
+
+        return new ResponseEntity(errorAttributes, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({RuntimeException.class})
+    public ResponseEntity<Object> handleServiceCodeNotFound(
+            final RuntimeException ex) {
+        final List<String> errors = new ArrayList<>();
+        final HttpStatus status = HttpStatus.BAD_REQUEST;
+        errors.add(ex.getMessage());
+        final ErrorAttributes errorAttributes = new ErrorAttributes(
+                status,
+                ex.getMessage()
+        );
+        return new ResponseEntity<Object>(errorAttributes, new HttpHeaders(), status);
     }
 
 }

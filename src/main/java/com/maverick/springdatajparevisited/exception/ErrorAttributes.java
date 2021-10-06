@@ -12,5 +12,8 @@ public class ErrorAttributes {
     private String message;
     private List<String> errors;
 
-
+    public ErrorAttributes(HttpStatus status, String message){
+        this.message=message;
+        this.status=status;
+    }
 }
